@@ -27,7 +27,9 @@ const site = Astro.site;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- TODO: if we later get an actual svg icon, we can use it here instead of png -->
+    <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> -->
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body class="bg-cream text-ink font-sans antialiased overflow-x-hidden">
