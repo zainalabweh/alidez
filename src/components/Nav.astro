@@ -1,6 +1,7 @@
 ---
-import Icon from './Icon.astro';
-import { useTranslations, prefix, type Lang } from '../i18n/utils';
+import Icon from '@/components/Icon.astro';
+import { useTranslations, prefix, type Lang } from '@/i18n/utils';
+import { mailto } from '@/config';
 
 interface Props { lang: Lang; esPath: string; enPath: string }
 const { lang, esPath, enPath } = Astro.props;
@@ -40,7 +41,7 @@ const current = Astro.url.pathname;
         <span class="text-line mx-1">|</span>
         <a href={enPath} class:list={[lang === 'en' ? 'text-brand' : 'text-ink-soft hover:text-brand']} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
       </div>
-      <a href="mailto:hola@alidez.com" class="bg-forest text-white px-6 py-2 rounded-lg font-bold hover:bg-forest/90 transition-colors">{t('nav.cta')}</a>
+      <a href={mailto(t('contact.subject'))} class="bg-forest text-white px-6 py-2 rounded-lg font-bold hover:bg-forest/90 transition-colors">{t('nav.cta')}</a>
     </div>
 
     <button id="menu-btn" class="md:hidden text-forest p-2" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">

@@ -1,5 +1,6 @@
 ---
-import { useTranslations, prefix, type Lang } from '../i18n/utils';
+import { CONTACT_EMAIL, mailto } from '@/config';
+import { useTranslations, prefix, type Lang } from '@/i18n/utils';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -20,7 +21,7 @@ const year = new Date().getFullYear();
       <a href={`${p}/solution`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.solution')}</a>
       <a href={`${p}/impact`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.impact')}</a>
       <a href={`${p}/about`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.about')}</a>
-      <a href="mailto:hola@alidez.com" class="text-leaf font-semibold hover:opacity-80 transition-opacity">hola@alidez.com</a>
+      <a href={mailto(t('contact.subject'))} class="text-leaf font-semibold hover:opacity-80 transition-opacity">{CONTACT_EMAIL}</a>
     </div>
   </div>
 </footer>

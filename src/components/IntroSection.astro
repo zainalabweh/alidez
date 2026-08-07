@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import Icon from './Icon.astro';
-import cactusImg from '../assets/cactus-closeup.png';
-import { useTranslations, type Lang } from '../i18n/utils';
+import Icon from '@/components/Icon.astro';
+import cactusImg from '@/assets/cactus-closeup.png';
+import { useTranslations, type Lang } from '@/i18n/utils';
+import { mailto } from '@/config';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -35,7 +36,7 @@ const chips = [
         ))}
       </div>
 
-      <a href="mailto:hola@alidez.com" class="bg-forest text-white px-8 py-3 rounded-lg font-bold hover:bg-forest/90 transition-colors w-fit">{t('intro.cta')}</a>
+      <a href={mailto(t('contact.subject'))} class="bg-forest text-white px-8 py-3 rounded-lg font-bold hover:bg-forest/90 transition-colors w-fit">{t('intro.cta')}</a>
     </div>
 
     <div class="md:col-span-5 md:col-start-8 relative h-[420px] md:h-[600px] rounded-xl overflow-hidden shadow-xl">

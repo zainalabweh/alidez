@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import Icon from './Icon.astro';
-import beefImg from '../assets/beef-cattle.png';
-import { useTranslations, type Lang } from '../i18n/utils';
+import Icon from '@/components/Icon.astro';
+import beefImg from '@/assets/beef-cattle.png';
+import { useTranslations, type Lang } from '@/i18n/utils';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;

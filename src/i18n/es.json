@@ -22,11 +22,6 @@
   "hero.stat3.label": "Suministro local",
 
   "partners.label": "Colaboramos con",
-  "partners.1": "INIFAP",
-  "partners.2": "Secretaría de Desarrollo Rural",
-  "partners.3": "Asociación Angus Mexicana",
-  "partners.4": "Grupo Proinova",
-  "partners.5": "FAO CactusNet",
 
   "intro.label": "Introducción",
   "intro.heading": "Repensando la escasez de recursos",
@@ -89,6 +84,7 @@
   "contact.heading": "Hablemos",
   "contact.body": "¿Interesado en Alidez? Escríbenos y te responderemos.",
   "contact.cta": "Escríbenos",
+  "contact.subject": "Consulta - Alidez",
 
   "footer.tagline": "Alimentos del Desierto",
   "footer.rights": "Todos los derechos reservados.",

@@ -1,19 +1,21 @@
 ---
-import Icon from './Icon.astro';
-import { useTranslations, type Lang } from '../i18n/utils';
+import Icon from '@/components/Icon.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+import { CONTACT_EMAIL, mailto } from '@/config';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
 ---
 
 <section id="contact" class="bg-forest py-20 w-full scroll-mt-20">
   <div class="max-w-3xl mx-auto px-5 md:px-12 text-center">
     <h2 class="font-serif text-3xl md:text-4xl text-white mb-4">{t('contact.heading')}</h2>
     <p class="text-white/80 text-lg mb-8">{t('contact.body')}</p>
-    <a href="mailto:hola@alidez.com" class="inline-flex items-center gap-3 bg-amber text-soil px-8 py-4 rounded-xl font-bold hover:brightness-95 transition text-lg">
+    <a href={mailto(t('contact.subject'))} class="inline-flex items-center gap-3 bg-amber text-soil px-8 py-4 rounded-xl font-bold hover:brightness-95 transition text-lg">
       <Icon name="mail" class="w-5 h-5" /> {t('contact.cta')}
     </a>
-    <p class="text-white/70 mt-6 select-all">hola@alidez.com</p>
+    <p class="text-white/70 mt-6 select-all">{CONTACT_EMAIL}</p>
   </div>
 </section>

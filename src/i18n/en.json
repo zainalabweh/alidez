@@ -22,11 +22,6 @@
   "hero.stat3.label": "Local Supply",
 
   "partners.label": "Working With",
-  "partners.1": "INIFAP",
-  "partners.2": "Ministry of Rural Development",
-  "partners.3": "Mexico Angus Beef Association",
-  "partners.4": "Grupo Proinova",
-  "partners.5": "FAO CactusNet",
 
   "intro.label": "Introduction",
   "intro.heading": "Rethinking Resource Scarcity",
@@ -89,6 +84,7 @@
   "contact.heading": "Let's talk",
   "contact.body": "Interested in Alidez? Reach out and we'll get back to you.",
   "contact.cta": "Email Us",
+  "contact.subject": "Inquiry - Alidez",
 
   "footer.tagline": "Alimentos del Desierto",
   "footer.rights": "All rights reserved.",

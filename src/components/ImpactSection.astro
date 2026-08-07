@@ -1,7 +1,8 @@
 ---
 // src/components/ImpactSection.astro
-import { useTranslations } from '../i18n/utils';
-import Icon from './Icon.astro';
+import { useTranslations } from '@/i18n/utils';
+import Icon from '@/components/Icon.astro';
+
 interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
