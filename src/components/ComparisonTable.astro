@@ -4,7 +4,11 @@ import { useTranslations, type Lang } from '@/i18n/utils';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const rows = [1, 2, 3, 4, 5, 6];
+const rows = [1, 2, 3, 4, 5, 6].map((r) => ({
+  m: t(`table.r${r}.m`),
+  c: t(`table.r${r}.c`),
+  a: t(`table.r${r}.a`),
+}));
 ---
 
 <section class="py-24 md:py-32 px-5 md:px-12 bg-panel">
@@ -14,25 +18,47 @@ const rows = [1, 2, 3, 4, 5, 6];
       <h2 class="font-serif text-3xl md:text-4xl leading-tight text-ink">{t('table.heading')}</h2>
     </div>
 
-    <div class="overflow-x-auto shadow-xl rounded-xl bg-white">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-line">
-            <th class="p-5 md:p-6 font-semibold text-ink">{t('table.col.metric')}</th>
-            <th class="p-5 md:p-6 font-semibold text-ink-soft">{t('table.col.corn')}</th>
-            <th class="p-5 md:p-6 font-semibold text-forest bg-brand/10">{t('table.col.alidez')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr class:list={[index < rows.length - 1 && 'border-b border-line']}>
-              <td class="p-5 md:p-6 text-ink font-semibold">{t(`table.r${row}.m`)}</td>
-              <td class="p-5 md:p-6 text-ink-soft">{t(`table.r${row}.c`)}</td>
-              <td class="p-5 md:p-6 text-forest bg-brand/10 font-medium">{t(`table.r${row}.a`)}</td>
+    <div class="overflow-x-auto shadow-xl rounded-xl">
+      <!-- Mobile: metric cards -->
+      <div class="md:hidden space-y-3">
+        {rows.map((row) => (
+          <div class="bg-white rounded-xl border border-line shadow-sm overflow-hidden">
+            <div class="px-4 py-3 font-semibold text-ink border-b border-line">{row.m}</div>
+            <div class="grid grid-cols-2">
+              <div class="px-4 py-3">
+                <div class="text-[10px] uppercase tracking-widest text-ink-soft mb-1">{t('table.col.corn')}</div>
+                <div class="text-sm text-ink-soft">{row.c}</div>
+              </div>
+              <div class="px-4 py-3 bg-brand/10">
+                <div class="text-[10px] uppercase tracking-widest text-forest mb-1">{t('table.col.alidez')}</div>
+                <div class="text-sm text-forest font-semibold">{row.a}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop: real table -->
+      <div class="hidden md:block overflow-x-auto shadow-xl rounded-xl bg-white">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-line">
+              <th class="p-5 md:p-6 font-semibold text-ink">{t('table.col.metric')}</th>
+              <th class="p-5 md:p-6 font-semibold text-ink-soft">{t('table.col.corn')}</th>
+              <th class="p-5 md:p-6 font-semibold text-forest bg-brand/10">{t('table.col.alidez')}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr class:list={[index < rows.length - 1 && 'border-b border-line']}>
+                <td class="p-5 md:p-6 text-ink font-semibold">{row.m}</td>
+                <td class="p-5 md:p-6 text-ink-soft">{row.c}</td>
+                <td class="p-5 md:p-6 text-forest bg-brand/10 font-medium">{row.a}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
