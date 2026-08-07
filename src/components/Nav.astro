@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations, prefix, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang; esPath: string; enPath: string }
+const { lang, esPath, enPath } = Astro.props;
+const t = useTranslations(lang);
+const p = prefix(lang);
+
+const links = [
+  { href: `${p}/` || '/', label: t('nav.home') },
+  { href: `${p}/solution`, label: t('nav.solution') },
+  { href: `${p}/impact`, label: t('nav.impact') },
+  { href: `${p}/about`, label: t('nav.about') },
+  { href: `${p}/#contact`, label: t('nav.contact') },
+];
+const current = Astro.url.pathname;
+---
+<nav class="fixed top-0 w-full z-50 bg-cream/90 backdrop-blur-md border-b border-line shadow-sm">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-5 md:px-12 h-20">
+    <a href={`${p}/` || '/'} class="flex items-center gap-3">
+      <span class="font-bold text-2xl text-forest">Alidez</span>
+    </a>
+
+    <div class="hidden md:flex gap-8 items-center">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            'transition-colors',
+            current === l.href ? 'text-brand font-bold border-b-2 border-brand pb-1' : 'text-ink-soft hover:text-brand',
+          ]}
+        >{l.label}</a>
+      ))}
+    </div>
+
+    <div class="hidden md:flex items-center gap-4">
+      <div class="text-sm font-semibold">
+        <a href={esPath} class:list={[lang === 'es' ? 'text-brand' : 'text-ink-soft hover:text-brand']} aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
+        <span class="text-line mx-1">|</span>
+        <a href={enPath} class:list={[lang === 'en' ? 'text-brand' : 'text-ink-soft hover:text-brand']} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </div>
+      <a href="mailto:hola@alidez.com" class="bg-forest text-white px-6 py-2 rounded-lg font-bold hover:bg-forest/90 transition-colors">{t('nav.cta')}</a>
+    </div>
+
+    <button id="menu-btn" class="md:hidden text-forest p-2" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <Icon name="menu" class="w-6 h-6" />
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-line bg-cream px-5 py-4 flex flex-col gap-4">
+    {links.map((l) => <a href={l.href} class="text-ink font-semibold">{l.label}</a>)}
+    <div class="flex items-center gap-2 pt-2 border-t border-line text-sm font-semibold">
+      <a href={esPath} class:list={[lang === 'es' ? 'text-brand' : 'text-ink-soft']}>ES</a>
+      <span class="text-line">|</span>
+      <a href={enPath} class:list={[lang === 'en' ? 'text-brand' : 'text-ink-soft']}>EN</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>

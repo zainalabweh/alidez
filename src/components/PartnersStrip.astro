@@ -1,0 +1,18 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const partners = [1, 2, 3, 4, 5].map((i) => t(`partners.${i}`));
+---
+<section class="bg-panel py-8 border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 md:px-12 flex flex-col items-center">
+    <span class="text-ink-soft text-xs font-bold tracking-widest uppercase mb-6">{t('partners.label')}</span>
+    <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-60">
+      {partners.map((name) => (
+        <span class="font-bold text-ink-soft">{name}</span>
+      ))}
+    </div>
+  </div>
+</section>

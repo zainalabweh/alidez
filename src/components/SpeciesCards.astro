@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import beefImg from '../assets/beef-cattle.png';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+// Cards 2–4 use icon placeholders until Zain's photos arrive (Aug 10) -
+// then convert to the same <Image> pattern as card 1.
+---
+<section class="py-24 md:py-32 px-5 md:px-12 max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <h2 class="font-serif text-3xl md:text-4xl leading-tight text-ink">{t('species.heading')}</h2>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-line">
+      <div class="w-full h-48 mb-6 rounded-lg overflow-hidden">
+        <Image src={beefImg} alt={t('species.1.t')} class="w-full h-full object-cover" widths={[480, 720]} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
+      </div>
+      <h3 class="font-bold text-ink text-lg mb-2">{t('species.1.t')}</h3>
+      <p class="text-sm text-ink-soft">{t('species.1.d')}</p>
+    </div>
+
+    {[2, 3, 4].map((n) => (
+      <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border border-line">
+        <div class="w-full h-48 mb-6 rounded-lg bg-brand/10 flex items-center justify-center">
+          <Icon name="paw" class="w-12 h-12 text-brand" />
+        </div>
+        <h3 class="font-bold text-ink text-lg mb-2">{t(`species.${n}.t`)}</h3>
+        <p class="text-sm text-ink-soft">{t(`species.${n}.d`)}</p>
+      </div>
+    ))}
+  </div>
+</section>

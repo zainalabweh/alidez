@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations, prefix, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const p = prefix(lang);
+
+const items = [
+  { icon: 'droplet', n: 1 },
+  { icon: 'leaf', n: 2 },
+  { icon: 'mountain', n: 3 },
+  { icon: 'trees', n: 4 },
+];
+---
+<section class="py-16 px-5 md:px-12 bg-cream border-y border-line">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+      <div>
+        <span class="text-brand text-xs font-bold tracking-widest uppercase mb-2 block">{t('impact.label')}</span>
+        <h2 class="font-serif text-3xl text-ink">{t('impact.heading')}</h2>
+      </div>
+      <a href={`${p}/impact`} class="text-forest font-bold hover:text-brand transition-colors flex items-center gap-2">
+        {t('impact.link')} <Icon name="arrowRight" class="w-4 h-4" />
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {items.map((it) => (
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-brand/10 rounded-lg text-forest shrink-0">
+            <Icon name={it.icon} class="w-5 h-5" />
+          </div>
+          <div>
+            <h3 class="font-bold text-ink">{t(`impact.${it.n}.t`)}</h3>
+            <p class="text-sm text-ink-soft">{t(`impact.${it.n}.d`)}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

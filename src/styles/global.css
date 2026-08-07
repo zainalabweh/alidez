@@ -1,1 +1,22 @@
 @import "tailwindcss";
+@import "@fontsource/hanken-grotesk/400.css";
+@import "@fontsource/hanken-grotesk/600.css";
+@import "@fontsource/hanken-grotesk/700.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+
+@theme {
+  --color-brand: #6B9E47;
+  --color-forest: #2A4023;
+  --color-amber: #E6AF2E;
+  --color-cream: #FAF6F0;
+  --color-leaf: #8DC63F;
+  --color-soil: #14190C;
+  --color-ink: #1c1c18;
+  --color-ink-soft: #42493b;
+  --color-line: #E2E8DE;
+  --color-panel: #f7f3ed;
+
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+}

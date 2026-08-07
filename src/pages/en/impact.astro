@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+const lang = 'en' as const;
+const t = useTranslations(lang);
+const title = t('nav.impact');
+---
+<BaseLayout lang={lang} title={`${title} - Alidez`} description={t('meta.home.desc')}>
+  <section class="py-32 px-5 md:px-12 max-w-7xl mx-auto text-center">
+    <h1 class="font-serif text-4xl text-ink mb-4">{title}</h1>
+    <p class="text-ink-soft">{t('stub.soon')}</p>
+  </section>
+</BaseLayout>

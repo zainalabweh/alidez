@@ -1,0 +1,38 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const rows = [1, 2, 3, 4, 5, 6];
+---
+
+<section class="py-24 md:py-32 px-5 md:px-12 bg-panel">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-brand text-xs font-bold tracking-widest uppercase mb-4 block">{t('table.label')}</span>
+      <h2 class="font-serif text-3xl md:text-4xl leading-tight text-ink">{t('table.heading')}</h2>
+    </div>
+
+    <div class="overflow-x-auto shadow-xl rounded-xl bg-white">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-line">
+            <th class="p-5 md:p-6 font-semibold text-ink">{t('table.col.metric')}</th>
+            <th class="p-5 md:p-6 font-semibold text-ink-soft">{t('table.col.corn')}</th>
+            <th class="p-5 md:p-6 font-semibold text-forest bg-brand/10">{t('table.col.alidez')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr class:list={[i < rows.length - 1 && 'border-b border-line']}>
+              <td class="p-5 md:p-6 text-ink font-semibold">{t(`table.r${r}.m`)}</td>
+              <td class="p-5 md:p-6 text-ink-soft">{t(`table.r${r}.c`)}</td>
+              <td class="p-5 md:p-6 text-forest bg-brand/10 font-medium">{t(`table.r${r}.a`)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

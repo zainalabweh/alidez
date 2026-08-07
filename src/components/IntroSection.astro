@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import cactusImg from '../assets/cactus-closeup.png';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// This section becomes a carousel later: turn `images` into an array prop
+// and map over it - the layout stays the same.
+const chips = [
+  { icon: 'sun', key: 'intro.chip1' },
+  { icon: 'calendar', key: 'intro.chip2' },
+  { icon: 'coins', key: 'intro.chip3' },
+  { icon: 'wheat', key: 'intro.chip4' },
+  { icon: 'pin', key: 'intro.chip5' },
+  { icon: 'paw', key: 'intro.chip6' },
+];
+---
+<section id="intro" class="py-24 md:py-32 px-5 md:px-12 max-w-7xl mx-auto scroll-mt-20">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+    <div class="md:col-span-6 flex flex-col justify-center space-y-8">
+      <span class="text-brand text-xs font-bold tracking-widest uppercase">{t('intro.label')}</span>
+      <h2 class="font-serif text-3xl md:text-5xl leading-tight text-ink">{t('intro.heading')}</h2>
+      <p class="text-lg text-ink-soft leading-relaxed">{t('intro.body')}</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 pt-2">
+        {chips.map((c) => (
+          <div class="flex items-center gap-2 p-3 bg-panel rounded-lg">
+            <Icon name={c.icon} class="w-4 h-4 text-brand shrink-0" />
+            <span class="text-sm font-medium">{t(c.key)}</span>
+          </div>
+        ))}
+      </div>
+
+      <a href="mailto:hola@alidez.com" class="bg-forest text-white px-8 py-3 rounded-lg font-bold hover:bg-forest/90 transition-colors w-fit">{t('intro.cta')}</a>
+    </div>
+
+    <div class="md:col-span-5 md:col-start-8 relative h-[420px] md:h-[600px] rounded-xl overflow-hidden shadow-xl">
+      <Image src={cactusImg} alt={t('intro.heading')} class="w-full h-full object-cover" widths={[640, 960]} sizes="(min-width: 768px) 40vw, 100vw" />
+      <div class="absolute bottom-6 right-6 left-6 md:left-auto bg-cream/90 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+        <p class="text-xs font-bold text-forest tracking-widest uppercase">{t('intro.card')}</p>
+      </div>
+    </div>
+  </div>
+</section>

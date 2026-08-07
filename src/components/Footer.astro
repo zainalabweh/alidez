@@ -1,0 +1,26 @@
+---
+import { useTranslations, prefix, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const p = prefix(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-soil w-full py-16">
+  <div class="max-w-7xl mx-auto px-5 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="md:col-span-1 mb-8 md:mb-0">
+      <span class="font-bold text-2xl text-leaf mb-2 block">Alidez</span>
+      <p class="text-white/70 text-sm mb-4">{t('footer.tagline')}</p>
+      <p class="text-white/50 text-sm">© {year} Alidez. {t('footer.rights')}</p>
+    </div>
+    <div class="md:col-span-3 flex flex-wrap gap-8 md:justify-end items-start">
+      <a href={`${p}/` || '/'} class="text-white/80 hover:text-leaf transition-colors">{t('nav.home')}</a>
+      <a href={`${p}/solution`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.solution')}</a>
+      <a href={`${p}/impact`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.impact')}</a>
+      <a href={`${p}/about`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.about')}</a>
+      <a href="mailto:hola@alidez.com" class="text-leaf font-semibold hover:opacity-80 transition-opacity">hola@alidez.com</a>
+    </div>
+  </div>
+</footer>
