@@ -24,11 +24,11 @@ const rows = [1, 2, 3, 4, 5, 6];
           </tr>
         </thead>
         <tbody>
-          {rows.map((r, i) => (
-            <tr class:list={[i < rows.length - 1 && 'border-b border-line']}>
-              <td class="p-5 md:p-6 text-ink font-semibold">{t(`table.r${r}.m`)}</td>
-              <td class="p-5 md:p-6 text-ink-soft">{t(`table.r${r}.c`)}</td>
-              <td class="p-5 md:p-6 text-forest bg-brand/10 font-medium">{t(`table.r${r}.a`)}</td>
+          {rows.map((row, index) => (
+            <tr class:list={[index < rows.length - 1 && 'border-b border-line']}>
+              <td class="p-5 md:p-6 text-ink font-semibold">{t(`table.r${row}.m`)}</td>
+              <td class="p-5 md:p-6 text-ink-soft">{t(`table.r${row}.c`)}</td>
+              <td class="p-5 md:p-6 text-forest bg-brand/10 font-medium">{t(`table.r${row}.a`)}</td>
             </tr>
           ))}
         </tbody>
