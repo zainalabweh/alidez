@@ -30,11 +30,11 @@ const t = useTranslations(lang);
             <p class="text-xs uppercase tracking-widest text-brand font-bold mt-1">{member.role[lang]}</p>
           </div>
 
-          <p class="text-base text-ink-soft">{member.summary[lang]}</p>
+          <p class="text-base text-ink">{member.summary[lang]}</p>
 
           <ul class="flex flex-col gap-2 text-left">
             {member.points[lang].map((pt) => (
-              <li class="flex items-start gap-2.5 text-[15px] text-ink-soft">
+              <li class="flex items-start gap-2.5 text-[15px] text-ink">
                 <span class="w-1.5 h-1.5 rounded-full bg-leaf mt-1.5 shrink-0"></span>
                 <span>{pt}</span>
               </li>
