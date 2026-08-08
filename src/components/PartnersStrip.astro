@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { partners } from '@/data/partners';
+// import { partners } from '@/data/partners';
+import { featuredPartners } from '@/data/partners';
 import { useTranslations, type Lang } from '@/i18n/utils';
 
 interface Props { lang: Lang }
@@ -11,11 +12,13 @@ const t = useTranslations(lang);
   <div class="max-w-7xl mx-auto px-5 md:px-12 flex flex-col items-center">
     <span class="text-ink-soft text-xs font-bold tracking-widest uppercase mb-6">{t('partners.label')}</span>
     <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-60">
-      {partners.map((pt) => (
+      {featuredPartners.map((pt) => <span class="font-bold text-ink-soft">{pt.label[lang]}</span>)}
+
+      <!-- {partners.map((pt) => (
         pt.logo
           ? <Image src={pt.logo} alt={pt.label[lang]} class="h-10 w-auto grayscale opacity-70" widths={[200]} />
           : <span class="font-bold text-ink-soft">{pt.label[lang]}</span>
-      ))}
+      ))} -->
     </div>
   </div>
 </section>

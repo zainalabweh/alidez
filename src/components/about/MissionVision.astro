@@ -1,0 +1,25 @@
+---
+import Icon from '@/components/Icon.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+
+const cards = [
+  { icon: 'target', title: 'about.mission.title', body: 'about.mission.body' },
+  { icon: 'eye', title: 'about.vision.title', body: 'about.vision.body' },
+];
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-cream">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+    {cards.map((c) => (
+      <div class="bg-white border border-line rounded-xl p-8 md:p-10 flex flex-col gap-4 shadow-sm">
+        <div class="p-3 bg-brand/10 rounded-lg text-forest w-fit">
+          <Icon name={c.icon} class="w-6 h-6" />
+        </div>
+        <h2 class="font-serif text-2xl md:text-3xl font-semibold text-ink">{t(c.title)}</h2>
+        <p class="text-ink-soft leading-relaxed">{t(c.body)}</p>
+      </div>
+    ))}
+  </div>
+</section>

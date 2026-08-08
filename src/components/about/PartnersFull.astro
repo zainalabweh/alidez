@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '@/components/Icon.astro';
+import { partnersByTier, type PartnerTier } from '@/data/partners';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const tiers: { id: PartnerTier; key: string }[] = [
+  { id: 'pilot', key: 'about.partners.tier.pilot' },
+  { id: 'national', key: 'about.partners.tier.national' },
+  { id: 'global', key: 'about.partners.tier.global' },
+];
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-cream">
+  <div class="max-w-7xl mx-auto flex flex-col gap-12 md:gap-16">
+    <div class="flex flex-col items-center gap-3 text-center">
+      <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('about.partners.label')}</span>
+      <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink">{t('about.partners.heading')}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+      {tiers.map((tier) => (
+        <div class="flex flex-col gap-6">
+          <h3 class="text-xs uppercase tracking-widest text-ink-soft font-bold border-b border-line pb-2">
+            {t(tier.key)}
+          </h3>
+          <ul class="flex flex-col gap-5">
+            {partnersByTier(tier.id).map((p) => (
+              <li class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded bg-white border border-line flex items-center justify-center shrink-0 overflow-hidden">
+                  {p.logo
+                    ? <Image src={p.logo} alt={p.label[lang]} class="w-full h-full object-contain p-1.5 grayscale" widths={[96]} />
+                    : <Icon name="building" class="w-5 h-5 text-line" />}
+                </div>
+                <span class="text-ink text-[15px] leading-snug">{p.label[lang]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-xs text-ink-soft text-center max-w-2xl mx-auto">{t('about.partners.note')}</p>
+  </div>
+</section>

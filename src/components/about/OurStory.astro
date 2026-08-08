@@ -1,0 +1,20 @@
+---
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-cream flex flex-col items-center">
+  <div class="max-w-3xl flex flex-col items-center gap-6 md:gap-8">
+    <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('about.story.label')}</span>
+    <h2 class="font-serif text-2xl md:text-4xl font-semibold text-ink text-center leading-tight">
+      {t('about.story.heading')}
+    </h2>
+
+    <blockquote class="border-l-4 border-leaf pl-6 py-2 text-left w-full my-2 md:my-4">
+      <p class="font-serif text-xl md:text-2xl text-brand italic leading-snug">{t('about.story.quote')}</p>
+    </blockquote>
+
+    <p class="text-lg text-ink-soft text-left leading-relaxed">{t('about.story.body')}</p>
+  </div>
+</section>

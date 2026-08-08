@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '@/components/Icon.astro';
+import plantationImg from '@/assets/hero-plantation.png';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+
+const points = [
+  { icon: 'flag', key: 'about.mexico.p1' },
+  { icon: 'globe', key: 'about.mexico.p2' },
+  { icon: 'sprout', key: 'about.mexico.p3' },
+  { icon: 'handshake', key: 'about.mexico.p4' },
+];
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-panel">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+    <div class="rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
+      <Image
+        src={plantationImg}
+        alt={t('about.mexico.heading')}
+        class="w-full h-[320px] md:h-[500px] object-cover"
+        widths={[640, 960]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
+    </div>
+
+    <div class="flex flex-col gap-6 md:gap-8 order-1 md:order-2">
+      <div class="flex flex-col gap-2">
+        <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('about.mexico.label')}</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink">{t('about.mexico.heading')}</h2>
+      </div>
+
+      <ul class="flex flex-col gap-5">
+        {points.map((p) => (
+          <li class="flex items-start gap-4">
+            <Icon name={p.icon} class="w-5 h-5 text-brand mt-1 shrink-0" />
+            <span class="text-ink-soft">{t(p.key)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
