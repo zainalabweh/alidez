@@ -5,9 +5,9 @@ interface Props { lang: Lang }
 const t = useTranslations(Astro.props.lang);
 ---
 <section class="py-20 md:py-28 px-5 md:px-12 bg-cream flex flex-col items-center">
-  <div class="max-w-3xl flex flex-col items-center gap-6 md:gap-8">
-    <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('about.story.label')}</span>
-    <h2 class="font-serif text-2xl md:text-4xl font-semibold text-ink text-center leading-tight">
+  <div class="max-w-3xl flex flex-col gap-6 md:gap-8">
+    <span class="text-brand text-xs text-left font-bold uppercase tracking-widest">{t('about.story.label')}</span>
+    <h2 class="font-serif text-2xl md:text-4xl font-semibold text-ink text-left leading-tight">
       {t('about.story.heading')}
     </h2>
 

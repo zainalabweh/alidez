@@ -26,15 +26,15 @@ const t = useTranslations(lang);
           </div>
 
           <div>
-            <h3 class="font-bold text-lg text-ink">{member.name}</h3>
+            <h3 class="font-bold text-xl text-ink">{member.name}</h3>
             <p class="text-xs uppercase tracking-widest text-brand font-bold mt-1">{member.role[lang]}</p>
           </div>
 
-          <p class="text-sm text-ink-soft">{member.summary[lang]}</p>
+          <p class="text-base text-ink-soft">{member.summary[lang]}</p>
 
           <ul class="flex flex-col gap-2 text-left">
             {member.points[lang].map((pt) => (
-              <li class="flex items-start gap-2.5 text-sm text-ink-soft">
+              <li class="flex items-start gap-2.5 text-[15px] text-ink-soft">
                 <span class="w-1.5 h-1.5 rounded-full bg-leaf mt-1.5 shrink-0"></span>
                 <span>{pt}</span>
               </li>
