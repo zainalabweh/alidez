@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+// All four photos exist in Zain's pitch deck (slide 5). Steps 2 and 3 are
+// VIDEOS in the deck - either pull a frame or use short muted loops later.
+import step1 from '@/assets/ai/process-harvest.jpg';
+import step2 from '@/assets/ai/process-ground.jpg';
+import step3 from '@/assets/ai/process-pellets.jpg';
+import step4 from '@/assets/ai/process-livestock.jpg';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+
+const steps = [
+  { n: 1, img: step1 },
+  { n: 2, img: step2 },
+  { n: 3, img: step3 },
+  { n: 4, img: step4 },
+];
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-cream">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 md:mb-16">
+      <span class="text-brand text-xs font-bold uppercase tracking-widest mb-3 block">{t('sol.process.label')}</span>
+      <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink">{t('sol.process.heading')}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((s) => (
+        <div class="flex flex-col">
+          <div class="aspect-square rounded-xl overflow-hidden mb-5 relative bg-panel">
+            <Image
+              src={s.img}
+              alt={t(`sol.process.${s.n}.t`)}
+              class="w-full h-full object-cover"
+              widths={[400, 600]}
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            />
+            <div class="absolute top-4 left-4 bg-amber text-soil w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+              {s.n}
+            </div>
+          </div>
+          <h3 class="font-bold text-lg text-ink mb-1.5">{t(`sol.process.${s.n}.t`)}</h3>
+          <p class="text-base text-ink-soft leading-relaxed">{t(`sol.process.${s.n}.d`)}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-12 md:mt-16 max-w-3xl mx-auto text-lg text-ink-soft leading-relaxed border-l-4 border-leaf pl-6">
+      {t('sol.process.body')}
+    </p>
+  </div>
+</section>

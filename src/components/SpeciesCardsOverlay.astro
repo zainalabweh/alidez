@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '@/components/Icon.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+// Portrait cards with a gradient overlay and the species name bottom-left.
+// Alternative treatment to SpeciesCards.astro — pick one before launch.
+import beefImg from '@/assets/ai/beef-cattle.jpg';
+import dairyImg from '@/assets/ai/dairy-cattle.jpg';
+import sheepImg from '@/assets/ai/sheep.jpg';
+import goatsImg from '@/assets/ai/goats.jpg';
+
+interface Props { lang: Lang; showHeading?: boolean }
+const { lang, showHeading = true } = Astro.props;
+const t = useTranslations(lang);
+
+const species = [
+  { n: 1, img: beefImg },
+  { n: 2, img: dairyImg },
+  { n: 3, img: sheepImg },
+  { n: 4, img: goatsImg },
+];
+---
+<section class="py-20 md:py-28 px-5 md:px-12 max-w-7xl mx-auto">
+  {showHeading && (
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="font-serif text-3xl md:text-4xl leading-tight text-ink">{t('species.heading')}</h2>
+    </div>
+  )}
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    {species.map((s) => (
+      <div class="relative rounded-xl overflow-hidden group aspect-[3/4] bg-panel border border-line">
+        {s.img ? (
+          <>
+            <Image
+              src={s.img}
+              alt={t(`species.${s.n}.t`)}
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              widths={[400, 600]}
+              sizes="(min-width: 768px) 25vw, 50vw"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-soil/85 via-soil/25 to-transparent"></div>
+          </>
+        ) : (
+          <div class="absolute inset-0 flex items-center justify-center">
+            <Icon name="paw" class="w-10 h-10 text-line" />
+          </div>
+        )}
+
+        <div class="absolute bottom-0 left-0 right-0 p-4">
+          <h3 class:list={['font-bold text-lg leading-tight', s.img ? 'text-white' : 'text-ink']}>
+            {t(`species.${s.n}.t`)}
+          </h3>
+          <p class:list={['text-sm mt-1 leading-snug', s.img ? 'text-white/85' : 'text-ink-soft']}>
+            {t(`species.${s.n}.d`)}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

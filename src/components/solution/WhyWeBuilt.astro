@@ -1,0 +1,14 @@
+---
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-cream">
+  <div class="max-w-3xl mx-auto flex flex-col gap-6">
+    <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('sol.why.label')}</span>
+    <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink leading-tight">{t('sol.why.heading')}</h2>
+    <p class="text-lg text-ink-soft leading-relaxed">{t('sol.why.p1')}</p>
+    <p class="text-lg text-ink-soft leading-relaxed">{t('sol.why.p2')}</p>
+  </div>
+</section>
