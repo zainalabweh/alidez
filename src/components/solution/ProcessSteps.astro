@@ -29,11 +29,11 @@ const steps = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {steps.map((s) => (
         <div class="flex flex-col">
-          <div class="aspect-square rounded-xl overflow-hidden mb-5 relative bg-panel">
+          <div class="aspect-square rounded-xl overflow-hidden mb-5 relative bg-panel group">
             <Image
               src={s.img}
               alt={t(`sol.process.${s.n}.t`)}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               widths={[400, 600]}
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             />

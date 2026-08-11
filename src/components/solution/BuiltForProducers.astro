@@ -24,11 +24,11 @@ const benefits = [1, 2, 3, 4, 5, 6];
       </ul>
     </div>
 
-    <div class="rounded-2xl overflow-hidden shadow-xl">
+    <div class="rounded-2xl overflow-hidden shadow-xl group">
       <Image
         src={producersImg}
         alt={t('sol.producers.heading')}
-        class="w-full h-auto object-cover aspect-[4/3]"
+        class="w-full h-auto object-cover aspect-[4/3] transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         widths={[640, 960]}
         sizes="(min-width: 1024px) 50vw, 100vw"
       />
