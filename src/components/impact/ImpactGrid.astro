@@ -1,0 +1,41 @@
+---
+import Icon from '@/components/Icon.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+
+const items = [
+  { n: 1, icon: 'droplet' },
+  { n: 2, icon: 'cloud' },
+  { n: 3, icon: 'thermometer' },
+  { n: 4, icon: 'mountain' },
+  { n: 5, icon: 'trees' },
+  { n: 6, icon: 'bird' },
+  { n: 7, icon: 'wheat' },
+];
+---
+<section class="py-20 md:py-28 px-5 md:px-12 bg-cream">
+  <div class="max-w-7xl mx-auto">
+    <div class="max-w-2xl mb-12">
+      <span class="text-brand text-xs font-bold uppercase tracking-widest mb-3 block">
+        {t('impact.why.label')}
+      </span>
+      <p class="font-serif text-2xl md:text-3xl text-ink leading-snug">
+        {t('impact.why.heading')}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {items.map((item) => (
+        <div class="bg-white border border-line rounded-xl p-7 md:p-8 shadow-sm flex flex-col gap-4">
+          <div class="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center text-forest shrink-0">
+            <Icon name={item.icon} class="w-5 h-5" />
+          </div>
+          <h3 class="font-bold text-lg text-ink">{t(`impact.item${item.n}.t`)}</h3>
+          <p class="text-base text-ink-soft leading-relaxed">{t(`impact.item${item.n}.d`)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

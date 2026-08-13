@@ -1,14 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/about/PageHeader.astro';
+import ImpactGrid from '@/components/impact/ImpactGrid.astro';
+import ContactCta from '@/components/ContactCta.astro';
 import { useTranslations } from '@/i18n/utils';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
-const title = t('nav.impact');
 ---
-<BaseLayout lang={lang} title={`${title} - Alidez`} description={t('meta.home.desc')}>
-  <section class="py-32 px-5 md:px-12 max-w-7xl mx-auto text-center">
-    <h1 class="font-serif text-4xl text-ink mb-4">{title}</h1>
-    <p class="text-ink-soft">{t('stub.soon')}</p>
-  </section>
+<BaseLayout lang={lang} title={t('meta.impact.title')} description={t('meta.impact.desc')}>
+  <PageHeader label={t('impact.header.label')} heading={t('impact.header.heading')} sub={t('impact.header.sub')} />
+  <ImpactGrid lang={lang} />
+  <ContactCta lang={lang} headingKey="impact.closing.heading" bodyKey="impact.closing.body" />
 </BaseLayout>
