@@ -15,7 +15,9 @@ const links = [
   { href: `${p}/about`, label: t('nav.about') },
   { href: `${p}/#contact`, label: t('nav.contact') },
 ];
-const current = Astro.url.pathname;
+// Built pages end in a slash (/about/) but the links don't, so compare without it.
+const trimSlash = (path: string) => path.replace(/\/+$/, '') || '/';
+const current = trimSlash(Astro.url.pathname);
 ---
 <nav class="fixed top-0 w-full z-50 bg-cream/90 backdrop-blur-md border-b border-line shadow-sm">
   <div class="flex justify-between items-center max-w-7xl mx-auto px-5 md:px-12 h-20">
@@ -29,7 +31,7 @@ const current = Astro.url.pathname;
           href={l.href}
           class:list={[
             'transition-colors',
-            current === l.href ? 'text-brand font-bold border-b-2 border-brand pb-1' : 'text-ink-soft hover:text-brand',
+            current === trimSlash(l.href) ? 'text-brand font-bold border-b-2 border-brand pb-1' : 'text-ink-soft hover:text-brand',
           ]}
         >{l.label}</a>
       ))}
