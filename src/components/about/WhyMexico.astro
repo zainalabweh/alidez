@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 import plantationImg from '@/assets/photos/Nopal_Field_6.jpg';
 import { useTranslations, type Lang } from '@/i18n/utils';
 
@@ -14,29 +15,28 @@ const points = [
   { icon: 'handshake', key: 'about.mexico.p4' },
 ];
 ---
-<section class="py-20 md:py-28 px-5 md:px-12 bg-panel">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-    <div class="rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
+<section class="bg-panel border-y border-line">
+  <!-- wrap-reverse puts the text above the photo once they stack -->
+  <div class="wrapper section-y flex flex-wrap-reverse items-center gap-[clamp(40px,7vw,112px)]">
+    <figure class="flex-[1_1_440px] min-w-0 aspect-[4/3] rounded-2xl overflow-hidden bg-white">
       <Image
         src={plantationImg}
         alt={t('about.mexico.heading')}
-        class="w-full h-[320px] md:h-[400px] object-cover"
+        class="w-full h-full object-cover"
         widths={[640, 960]}
-        sizes="(min-width: 768px) 50vw, 100vw"
+        sizes="(min-width: 1000px) 540px, 100vw"
       />
-    </div>
+    </figure>
 
-    <div class="flex flex-col gap-6 md:gap-8 order-1 md:order-2">
-      <div class="flex flex-col gap-2">
-        <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('about.mexico.label')}</span>
-        <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink">{t('about.mexico.heading')}</h2>
-      </div>
+    <div class="flex-[1_1_400px] min-w-0">
+      <Eyebrow label={t('about.mexico.label')} />
+      <h2 class="mt-[22px] heading-section text-ink">{t('about.mexico.heading')}</h2>
 
-      <ul class="flex flex-col gap-5">
+      <ul class="mt-[clamp(28px,3.4vw,40px)] border-b border-line">
         {points.map((p) => (
-          <li class="flex items-start gap-4">
-            <Icon name={p.icon} class="w-5 h-5 text-brand mt-1 shrink-0" />
-            <span class="text-[17px] text-ink-soft">{t(p.key)}</span>
+          <li class="flex items-start gap-4 py-[18px] border-t border-line">
+            <Icon name={p.icon} class="w-[22px] h-[22px] mt-px shrink-0 text-brand" />
+            <span class="text-[17px] leading-[1.5] text-ink">{t(p.key)}</span>
           </li>
         ))}
       </ul>

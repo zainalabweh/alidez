@@ -7,20 +7,29 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const p = prefix(lang);
 const year = new Date().getFullYear();
----
 
-<footer class="bg-soil w-full py-16">
-  <div class="max-w-7xl mx-auto px-5 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-6">
-    <div class="md:col-span-1 mb-8 md:mb-0">
-      <span class="font-bold text-2xl text-leaf mb-2 block">Alidez</span>
-      <p class="text-white/70 text-sm mb-4">{t('footer.tagline')}</p>
-      <p class="text-white/50 text-sm">© {year} Alidez. {t('footer.rights')}</p>
+const links = [
+  { href: `${p}/` || '/', label: t('nav.home') },
+  { href: `${p}/solution`, label: t('nav.solution') },
+  { href: `${p}/impact`, label: t('nav.impact') },
+  { href: `${p}/about`, label: t('nav.about') },
+];
+---
+<footer class="bg-soil text-white">
+  <div class="wrapper pt-[clamp(56px,7vw,88px)] pb-8">
+    <div class="flex flex-wrap justify-between items-start gap-x-16 gap-y-10 pb-[clamp(40px,5vw,64px)]">
+      <div class="flex flex-col gap-3">
+        <span class="font-bold text-[30px] leading-none tracking-[-0.035em] text-leaf">Alidez</span>
+        <p class="font-serif italic font-medium text-lg text-white/72">{t('footer.tagline')}</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-9 gap-y-3.5 text-[15px] font-medium">
+        {links.map((l) => (
+          <a href={l.href} class="text-white/82 hover:text-leaf transition-colors">{l.label}</a>
+        ))}
+      </div>
     </div>
-    <div class="md:col-span-3 flex flex-wrap gap-8 md:justify-end items-start">
-      <a href={`${p}/` || '/'} class="text-white/80 hover:text-leaf transition-colors">{t('nav.home')}</a>
-      <a href={`${p}/solution`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.solution')}</a>
-      <a href={`${p}/impact`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.impact')}</a>
-      <a href={`${p}/about`} class="text-white/80 hover:text-leaf transition-colors">{t('nav.about')}</a>
+    <div class="flex flex-wrap justify-between items-center gap-x-6 gap-y-3 pt-6 border-t border-white/12 text-sm">
+      <p class="text-white/55">© {year} Alidez. {t('footer.rights')}</p>
       <a href={mailto(t('contact.subject'))} class="text-leaf font-semibold hover:opacity-80 transition-opacity">{CONTACT_EMAIL}</a>
     </div>
   </div>

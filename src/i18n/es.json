@@ -39,7 +39,8 @@
   "intro.chip5": "Producción local",
   "intro.chip6": "Adaptado por especie",
   "intro.cta": "Contáctanos",
-  "intro.card": "Fotosíntesis CAM / Intercambio nocturno de gases, mínima pérdida de agua",
+  "intro.card.title": "Fotosíntesis CAM",
+  "intro.card.body": "Intercambio nocturno de gases, mínima pérdida de agua",
 
   "table.label": "La Ventaja",
   "table.heading": "Maíz vs. Nopal Alidez",

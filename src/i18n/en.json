@@ -39,7 +39,8 @@
   "intro.chip5": "Locally Produced",
   "intro.chip6": "Tailored by Species",
   "intro.cta": "Contact Us",
-  "intro.card": "CAM Photosynthesis / Night gas exchange, minimal water loss",
+  "intro.card.title": "CAM Photosynthesis",
+  "intro.card.body": "Night gas exchange, minimal water loss",
 
   "table.label": "The Advantage",
   "table.heading": "Corn vs. Alidez Nopal",

@@ -1,5 +1,6 @@
 ---
 import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 import { useTranslations, prefix, type Lang } from '@/i18n/utils';
 
 interface Props { lang: Lang }
@@ -14,28 +15,24 @@ const items = [
   { icon: 'trees', n: 4 },
 ];
 ---
-<section class="py-16 px-5 md:px-12 bg-cream border-y border-line">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+<section class="border-b border-line">
+  <div class="wrapper py-[clamp(72px,9vw,120px)]">
+    <div class="flex flex-wrap justify-between items-end gap-x-12 gap-y-5">
       <div>
-        <span class="text-brand text-xs font-bold tracking-widest uppercase mb-2 block">{t('impact.label')}</span>
-        <h2 class="font-serif text-3xl text-ink">{t('impact.heading')}</h2>
+        <Eyebrow label={t('impact.label')} />
+        <h2 class="mt-[22px] heading-section text-ink">{t('impact.heading')}</h2>
       </div>
-      <a href={`${p}/impact`} class="text-forest font-bold hover:text-brand transition-colors flex items-center gap-2">
-        {t('impact.link')} <Icon name="arrowRight" class="w-4 h-4" />
+      <a href={`${p}/impact`} class="inline-flex items-center gap-2.5 py-2 text-base font-semibold text-forest underline decoration-line decoration-[1.5px] underline-offset-8 hover:decoration-brand transition-colors">
+        {t('impact.link')}<Icon name="arrowRight" class="w-[18px] h-[18px]" />
       </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="mt-[clamp(40px,5vw,64px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-y-2 gap-x-[clamp(24px,3vw,40px)]">
       {items.map((it) => (
-        <div class="flex items-start gap-4">
-          <div class="p-3 bg-brand/10 rounded-lg text-forest shrink-0">
-            <Icon name={it.icon} class="w-5 h-5" />
-          </div>
-          <div>
-            <h3 class="font-bold text-ink">{t(`impact.${it.n}.t`)}</h3>
-            <p class="text-sm text-ink-soft">{t(`impact.${it.n}.d`)}</p>
-          </div>
+        <div class="flex flex-col pt-7 border-t border-line">
+          <Icon name={it.icon} class="w-[26px] h-[26px] text-brand" />
+          <h3 class="mt-[22px] heading-item text-ink">{t(`impact.${it.n}.t`)}</h3>
+          <p class="mt-2 text-[15.5px] leading-[1.55] text-ink-soft">{t(`impact.${it.n}.d`)}</p>
         </div>
       ))}
     </div>

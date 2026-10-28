@@ -32,9 +32,9 @@ const site = Astro.site;
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body class="bg-cream text-ink font-sans antialiased overflow-x-hidden">
+  <body class="bg-cream text-ink font-sans antialiased overflow-x-clip">
     <Nav lang={lang} esPath={esPath} enPath={enPath} />
-    <main class="pt-20">
+    <main>
       <slot />
     </main>
     <Footer lang={lang} />

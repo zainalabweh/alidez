@@ -1,5 +1,6 @@
 ---
 import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 import { useTranslations, type Lang } from '@/i18n/utils';
 
 interface Props { lang: Lang }
@@ -14,21 +15,17 @@ const features = [
   { icon: 'settings', n: 6 },
 ];
 ---
-<section class="py-20 md:py-28 px-5 md:px-12 bg-panel">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-12 md:mb-16">
-      <span class="text-brand text-xs font-bold uppercase tracking-widest mb-3 block">{t('sol.pellets.label')}</span>
-      <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink">{t('sol.pellets.heading')}</h2>
-    </div>
+<section class="bg-panel border-y border-line">
+  <div class="wrapper section-y">
+    <Eyebrow label={t('sol.pellets.label')} />
+    <h2 class="mt-[22px] heading-section text-ink">{t('sol.pellets.heading')}</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div class="mt-[clamp(36px,4.4vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(12px,1.6vw,20px)]">
       {features.map((f) => (
-        <div class="bg-white p-7 md:p-8 rounded-xl border border-line shadow-sm flex flex-col items-start">
-          <div class="w-12 h-12 rounded-full bg-brand/10 text-forest flex items-center justify-center mb-5">
-            <Icon name={f.icon} class="w-5 h-5" />
-          </div>
-          <h3 class="font-bold text-lg text-ink mb-2">{t(`sol.pellets.${f.n}.t`)}</h3>
-          <p class="text-base text-ink-soft leading-relaxed">{t(`sol.pellets.${f.n}.d`)}</p>
+        <div class="flex flex-col bg-white border border-line rounded-2xl p-[clamp(24px,2.6vw,34px)]">
+          <Icon name={f.icon} class="w-[26px] h-[26px] text-brand" />
+          <h3 class="mt-7 heading-item text-ink">{t(`sol.pellets.${f.n}.t`)}</h3>
+          <p class="mt-2 text-base leading-[1.6] text-ink-soft">{t(`sol.pellets.${f.n}.d`)}</p>
         </div>
       ))}
     </div>

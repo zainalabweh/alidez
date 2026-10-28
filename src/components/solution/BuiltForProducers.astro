@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 import producersImg from '@/assets/ai/livestock-producers.jpg';
 import { useTranslations, type Lang } from '@/i18n/utils';
 
@@ -8,30 +9,32 @@ interface Props { lang: Lang }
 const t = useTranslations(Astro.props.lang);
 const benefits = [1, 2, 3, 4, 5, 6];
 ---
-<section class="py-20 md:py-28 px-5 md:px-12 bg-panel">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-    <div class="flex flex-col gap-6">
-      <span class="text-brand text-xs font-bold uppercase tracking-widest">{t('sol.producers.label')}</span>
-      <h2 class="font-serif text-3xl md:text-4xl font-semibold text-ink leading-tight">{t('sol.producers.heading')}</h2>
+<section class="bg-panel border-t border-line">
+  <div class="wrapper section-y grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] gap-[clamp(48px,7vw,112px)] items-center">
+    <div>
+      <Eyebrow label={t('sol.producers.label')} />
+      <h2 class="mt-[22px] heading-section text-ink">{t('sol.producers.heading')}</h2>
 
-      <ul class="flex flex-col gap-4 mt-2">
+      <ul class="mt-[clamp(28px,3.4vw,40px)] grid grid-cols-[repeat(auto-fill,minmax(min(100%,220px),1fr))] gap-x-7 border-b border-line">
         {benefits.map((n) => (
-          <li class="flex items-start gap-3">
-            <Icon name="check" class="w-5 h-5 text-leaf mt-0.5 shrink-0" />
-            <span class="text-base text-ink-soft">{t(`sol.producers.${n}`)}</span>
+          <li class="flex items-center gap-3 py-[15px] border-t border-line">
+            <span class="flex-none w-6 h-6 rounded-full bg-brand/14 text-forest flex items-center justify-center">
+              <Icon name="check" class="w-3.5 h-3.5" />
+            </span>
+            <span class="text-base font-medium text-ink">{t(`sol.producers.${n}`)}</span>
           </li>
         ))}
       </ul>
     </div>
 
-    <div class="rounded-2xl overflow-hidden shadow-xl group">
+    <figure class="aspect-video rounded-2xl overflow-hidden bg-white">
       <Image
         src={producersImg}
         alt={t('sol.producers.heading')}
-        class="w-full h-auto object-cover aspect-[4/3] transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        class="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(.2,.7,.2,1)] hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:scale-100"
         widths={[640, 960]}
-        sizes="(min-width: 1024px) 50vw, 100vw"
+        sizes="(min-width: 1000px) 540px, 100vw"
       />
-    </div>
+    </figure>
   </div>
 </section>

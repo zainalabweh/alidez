@@ -1,5 +1,6 @@
 ---
 import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 import { useTranslations, type Lang } from '@/i18n/utils';
 
 interface Props { lang: Lang }
@@ -15,27 +16,21 @@ const items = [
   { n: 7, icon: 'wheat' },
 ];
 ---
-<section class="py-20 md:py-28 px-5 md:px-12 bg-cream">
-  <div class="max-w-7xl mx-auto">
-    <div class="max-w-2xl mb-12">
-      <span class="text-brand text-xs font-bold uppercase tracking-widest mb-3 block">
-        {t('impact.why.label')}
-      </span>
-      <p class="font-serif text-2xl md:text-3xl text-ink leading-snug">
+<section>
+  <div class="wrapper section-y grid grid-cols-[repeat(auto-fit,minmax(min(100%,250px),1fr))] gap-y-[clamp(40px,4.4vw,56px)] gap-x-[clamp(24px,3vw,40px)]">
+    <div class="pr-[clamp(0px,1.2vw,16px)]">
+      <Eyebrow label={t('impact.why.label')} />
+      <h2 class="mt-[22px] font-serif font-medium text-[clamp(28px,2.6vw,36px)] leading-[1.16] tracking-[-0.015em] text-ink text-balance">
         {t('impact.why.heading')}
-      </p>
+      </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {items.map((item) => (
-        <div class="bg-white border border-line rounded-xl p-7 md:p-8 shadow-sm flex flex-col gap-4">
-          <div class="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center text-forest shrink-0">
-            <Icon name={item.icon} class="w-5 h-5" />
-          </div>
-          <h3 class="font-bold text-lg text-ink">{t(`impact.item${item.n}.t`)}</h3>
-          <p class="text-base text-ink-soft leading-relaxed">{t(`impact.item${item.n}.d`)}</p>
-        </div>
-      ))}
-    </div>
+    {items.map((item) => (
+      <div class="flex flex-col pt-7 border-t border-line">
+        <Icon name={item.icon} class="w-[26px] h-[26px] text-brand" />
+        <h3 class="mt-[22px] heading-item text-ink">{t(`impact.item${item.n}.t`)}</h3>
+        <p class="mt-2.5 text-base leading-[1.6] text-ink-soft text-pretty">{t(`impact.item${item.n}.d`)}</p>
+      </div>
+    ))}
   </div>
 </section>

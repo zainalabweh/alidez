@@ -8,16 +8,20 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
-<section class="bg-panel py-8 border-b border-line">
-  <div class="max-w-7xl mx-auto px-5 md:px-12 flex flex-col items-center">
-    <span class="text-ink-soft text-xs font-bold tracking-widest uppercase mb-6">{t('partners.label')}</span>
-    <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 opacity-60">
-      {featuredPartners.map((pt) => <span class="font-bold text-ink-soft">{pt.label[lang]}</span>)}
+<section class="bg-cream border-b border-line">
+  <div class="wrapper py-[clamp(28px,3.4vw,40px)] flex flex-col items-center gap-[18px] text-center">
+    <div class="flex items-center gap-3.5">
+      <span class="w-7 h-px bg-line" aria-hidden="true"></span>
+      <span class="eyebrow text-ink-soft">{t('partners.label')}</span>
+      <span class="w-7 h-px bg-line" aria-hidden="true"></span>
+    </div>
+    <div class="flex flex-wrap justify-center items-center gap-y-2.5 gap-x-[clamp(24px,3.4vw,48px)] text-[15px] font-semibold tracking-[-0.005em] text-ink-soft">
+      {featuredPartners.map((pt) => <span>{pt.label[lang]}</span>)}
 
       <!-- {partners.map((pt) => (
         pt.logo
           ? <Image src={pt.logo} alt={pt.label[lang]} class="h-10 w-auto grayscale opacity-70" widths={[200]} />
-          : <span class="font-bold text-ink-soft">{pt.label[lang]}</span>
+          : <span>{pt.label[lang]}</span>
       ))} -->
     </div>
   </div>
