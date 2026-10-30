@@ -4,8 +4,8 @@ import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 import type { Lang } from '@/i18n/utils';
 
-interface Props { lang: Lang; title: string; description: string }
-const { lang, title, description } = Astro.props;
+interface Props { lang: Lang; title: string; description: string; noindex?: boolean }
+const { lang, title, description, noindex = false } = Astro.props;
 
 // English slugs everywhere, so the counterpart path is just add/remove /en
 const path = Astro.url.pathname;
@@ -20,6 +20,7 @@ const site = Astro.site;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={new URL(path, site)} />
     <link rel="alternate" hreflang="es" href={new URL(esPath, site)} />
     <link rel="alternate" hreflang="en" href={new URL(enPath, site)} />

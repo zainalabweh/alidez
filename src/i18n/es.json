@@ -7,6 +7,8 @@
   "meta.solution.desc": "Alimento completo para ganado, resiliente al clima, hecho de nopal, disponible todo el año a un precio competitivo.",
   "meta.impact.title": "Nuestro Impacto - Alidez",
   "meta.impact.desc": "Cómo el nopal cambia lo que el alimento para ganado le cuesta a la tierra: agua, resiliencia climática, restauración de suelos y seguridad alimentaria.",
+  "meta.notfound.title": "Página no encontrada - Alidez",
+  "meta.notfound.desc": "La página que buscas no existe o se movió.",
 
   "nav.home": "Inicio",
   "nav.solution": "Nuestra Solución",
@@ -118,6 +120,11 @@
   "footer.rights": "Todos los derechos reservados.",
 
   "stub.soon": "Esta página estará disponible pronto.",
+
+  "notfound.label": "Error 404",
+  "notfound.heading": "No encontramos esta página.",
+  "notfound.sub": "Es posible que se haya movido o que la dirección tenga un error.",
+  "notfound.cta": "Volver al inicio",
 
   "about.header.label": "Nosotros",
   "about.header.heading": "Nuestra Historia",

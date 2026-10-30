@@ -7,6 +7,8 @@
   "meta.solution.desc": "Climate-resilient complete livestock feed made from nopal cactus, with year-round availability at a competitive price.",
   "meta.impact.title": "Our Impact - Alidez",
   "meta.impact.desc": "How nopal cactus changes what livestock feed costs the land: water, climate resilience, land restoration and food security.",
+  "meta.notfound.title": "Page Not Found - Alidez",
+  "meta.notfound.desc": "The page you're looking for doesn't exist or has moved.",
 
   "nav.home": "Home",
   "nav.solution": "Our Solution",
@@ -118,6 +120,11 @@
   "footer.rights": "All rights reserved.",
 
   "stub.soon": "This page is coming soon.",
+
+  "notfound.label": "Error 404",
+  "notfound.heading": "We couldn't find that page.",
+  "notfound.sub": "It may have moved, or the address may have a typo.",
+  "notfound.cta": "Back to home",
 
   "about.header.label": "About",
   "about.header.heading": "Our Story",
