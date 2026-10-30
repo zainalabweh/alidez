@@ -1,0 +1,33 @@
+---
+import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+
+const features = [
+  { icon: 'thermometer', n: 1 },
+  { icon: 'droplet', n: 2 },
+  { icon: 'calendar', n: 3 },
+  { icon: 'mountain', n: 4 },
+  { icon: 'truck', n: 5 },
+  { icon: 'settings', n: 6 },
+];
+---
+<section class="bg-panel border-y border-line">
+  <div class="wrapper section-y">
+    <Eyebrow label={t('sol.pellets.label')} />
+    <h2 class="mt-[22px] heading-section text-ink">{t('sol.pellets.heading')}</h2>
+
+    <div class="mt-[clamp(36px,4.4vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(12px,1.6vw,20px)]">
+      {features.map((f) => (
+        <div class="flex flex-col bg-white border border-line rounded-2xl p-[clamp(24px,2.6vw,34px)]">
+          <Icon name={f.icon} class="w-[26px] h-[26px] text-brand" />
+          <h3 class="mt-7 heading-item text-ink">{t(`sol.pellets.${f.n}.t`)}</h3>
+          <p class="mt-2 text-base leading-[1.6] text-ink-soft">{t(`sol.pellets.${f.n}.d`)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

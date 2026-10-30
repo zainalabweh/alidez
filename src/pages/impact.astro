@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/about/PageHeader.astro';
+import ImpactGrid from '@/components/impact/ImpactGrid.astro';
+import ContactCta from '@/components/ContactCta.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout lang={lang} title={t('meta.impact.title')} description={t('meta.impact.desc')}>
+  <PageHeader label={t('impact.header.label')} heading={t('impact.header.heading')} sub={t('impact.header.sub')} />
+  <ImpactGrid lang={lang} />
+  <ContactCta lang={lang} headingKey="impact.closing.heading" bodyKey="impact.closing.body" />
+</BaseLayout>

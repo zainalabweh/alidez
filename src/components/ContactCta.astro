@@ -1,0 +1,26 @@
+---
+import Icon from '@/components/Icon.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+import { CONTACT_EMAIL, mailto } from '@/config';
+
+interface Props { lang: Lang; headingKey?: string; bodyKey?: string }
+const { lang, headingKey = 'contact.heading', bodyKey = 'contact.body' } = Astro.props;
+const t = useTranslations(lang);
+const href = mailto(t('contact.subject'));
+---
+<section id="contact" class="bg-forest text-white scroll-mt-[76px]">
+  <div class="wrapper py-[clamp(80px,10vw,136px)]">
+    <div class="flex flex-wrap items-end justify-between gap-x-20 gap-y-9">
+      <h2 class="flex-[1_1_520px] max-w-[780px] font-serif font-medium text-[clamp(40px,5.4vw,72px)] leading-[1.04] tracking-[-0.022em] text-white text-balance">{t(headingKey)}</h2>
+      <div class="flex-[0_1_420px] flex flex-col items-start gap-7">
+        <p class="text-[clamp(17px,1.45vw,19px)] leading-[1.55] text-white/82 text-pretty">{t(bodyKey)}</p>
+        <div class="flex flex-wrap items-center gap-x-7 gap-y-4">
+          <a href={href} class="inline-flex items-center gap-2.5 h-14 px-7 rounded-full bg-amber text-soil text-[17px] font-semibold hover:brightness-106 transition">
+            <Icon name="mail" class="w-5 h-5" />{t('contact.cta')}
+          </a>
+          <a href={href} class="text-white text-[17px] font-medium underline decoration-leaf/80 decoration-[1.5px] underline-offset-[6px] hover:decoration-leaf transition-colors">{CONTACT_EMAIL}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

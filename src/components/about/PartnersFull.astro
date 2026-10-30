@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '@/components/Icon.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { partnersByTier, type PartnerTier } from '@/data/partners';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const tiers: { id: PartnerTier; key: string }[] = [
+  { id: 'pilot', key: 'about.partners.tier.pilot' },
+  { id: 'national', key: 'about.partners.tier.national' },
+  { id: 'global', key: 'about.partners.tier.global' },
+];
+---
+<section class="bg-panel border-t border-line">
+  <div class="wrapper section-y">
+    <Eyebrow label={t('about.partners.label')} />
+    <h2 class="mt-[22px] heading-section text-ink">{t('about.partners.heading')}</h2>
+
+    <div class="mt-[clamp(40px,5vw,64px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-y-[clamp(36px,4vw,56px)] gap-x-[clamp(24px,3.4vw,48px)] items-start">
+      {tiers.map((tier) => (
+        <div>
+          <h3 class="pb-3.5 border-b border-forest eyebrow text-forest">{t(tier.key)}</h3>
+          <ul>
+            {partnersByTier(tier.id).map((p) => (
+              <li class="flex items-center gap-3.5 py-3.5 border-b border-line">
+                <div class="flex-none w-10 h-10 rounded-[10px] bg-white border border-line flex items-center justify-center overflow-hidden text-ink-soft/40">
+                  {p.logo
+                    ? <Image src={p.logo} alt={p.label[lang]} class="w-full h-full object-contain p-1 grayscale" widths={[80]} />
+                    : <Icon name="building" class="w-[18px] h-[18px]" />}
+                </div>
+                <span class="text-[15.5px] leading-[1.4] text-ink">{p.label[lang]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-[clamp(36px,4vw,56px)] max-w-[640px] text-sm leading-[1.55] text-ink-soft">{t('about.partners.note')}</p>
+  </div>
+</section>

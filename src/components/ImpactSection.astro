@@ -1,0 +1,41 @@
+---
+// src/components/ImpactSection.astro
+import { useTranslations } from '@/i18n/utils';
+import Icon from '@/components/Icon.astro';
+
+interface Props { lang: 'es' | 'en'; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const cards = [
+  { key: 'impact.card1', icon: 'drop' },
+  { key: 'impact.card2', icon: 'leaf' },
+  { key: 'impact.card3', icon: 'mountains' },
+  { key: 'impact.card4', icon: 'trees' },
+];
+const impactHref = lang === 'en' ? '/en/impact' : '/impact';
+---
+
+<section class="py-16 px-5 md:px-12 bg-cream border-y border-line">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+      <div>
+        <span class="text-brand text-xs font-bold tracking-widest uppercase mb-2 block">{t('impact.label')}</span>
+        <h2 class="font-serif text-3xl text-ink">{t('impact.headline')}</h2>
+      </div>
+      <a href={impactHref} class="text-brand font-bold hover:text-leaf transition-colors flex items-center gap-2">
+        {t('impact.link')} <Icon name="arrowRight" class="w-4 h-4" />
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {cards.map(({ key, icon }) => (
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-brand/10 rounded-lg text-brand shrink-0"><Icon name={icon} /></div>
+          <div>
+            <h4 class="font-bold text-ink">{t(`${key}.title`)}</h4>
+            <p class="text-sm text-ink-soft">{t(`${key}.body`)}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

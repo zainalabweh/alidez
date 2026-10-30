@@ -1,0 +1,43 @@
+---
+import '@/styles/global.css';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import type { Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang; title: string; description: string; noindex?: boolean }
+const { lang, title, description, noindex = false } = Astro.props;
+
+// English slugs everywhere, so the counterpart path is just add/remove /en
+const path = Astro.url.pathname;
+const esPath = path.replace(/^\/en(\/|$)/, '/') || '/';
+const enPath = path.startsWith('/en') ? path : (path === '/' ? '/en/' : `/en${path}`);
+const site = Astro.site;
+---
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={new URL(path, site)} />
+    <link rel="alternate" hreflang="es" href={new URL(esPath, site)} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(esPath, site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <!-- TODO: if we later get an actual svg icon, we can use it here instead of png -->
+    <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> -->
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="bg-cream text-ink font-sans antialiased overflow-x-clip">
+    <Nav lang={lang} esPath={esPath} enPath={enPath} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

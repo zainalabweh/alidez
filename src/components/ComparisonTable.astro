@@ -1,0 +1,61 @@
+---
+import Eyebrow from '@/components/Eyebrow.astro';
+import { useTranslations, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const rows = [1, 2, 3, 4, 5, 6].map((r) => ({
+  m: t(`table.r${r}.m`),
+  c: t(`table.r${r}.c`),
+  a: t(`table.r${r}.a`),
+}));
+---
+<section class="bg-forest text-white">
+  <div class="wrapper section-y">
+    <Eyebrow label={t('table.label')} tone="dark" />
+    <h2 class="mt-[22px] mb-[clamp(40px,5.5vw,72px)] heading-display text-white">{t('table.heading')}</h2>
+
+    <!-- 720px and up: table, with the Alidez column outlined -->
+    <table class="hidden min-[720px]:table w-full table-fixed border-separate border-spacing-0 text-left">
+      <thead>
+        <tr>
+          <th scope="col" class="w-[39.4%] pt-[22px] pb-[18px] pr-6 text-left eyebrow text-white/62">{t('table.col.metric')}</th>
+          <th scope="col" class="w-[30.3%] pt-[22px] pb-[18px] px-7 text-left eyebrow text-white/62">{t('table.col.corn')}</th>
+          <th scope="col" class="w-[30.3%] pt-[22px] pb-[18px] px-7 text-left eyebrow font-bold text-leaf bg-leaf/10 border border-b-0 border-leaf/32 rounded-t-2xl">{t('table.col.alidez')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, i) => {
+          const last = i === rows.length - 1;
+          return (
+            <tr>
+              <th scope="row" class:list={['py-[22px] pr-6 text-left border-t border-white/14 text-[17px] font-medium text-white', last && 'pb-6 border-b']}>{row.m}</th>
+              <td class:list={['py-[22px] px-7 border-t border-white/14 text-[17px] text-white/66', last && 'pb-6 border-b']}>{row.c}</td>
+              <td class:list={['py-[22px] px-7 border-t border-x border-t-leaf/22 border-x-leaf/32 bg-leaf/10 text-[17px] font-semibold text-white', last && 'pb-6 border-b border-b-leaf/32 rounded-b-2xl']}>{row.a}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+
+    <!-- Below 720px: one block per metric -->
+    <div class="min-[720px]:hidden flex flex-col gap-2.5">
+      {rows.map((row) => (
+        <div class="pt-[18px] pb-1 border-t border-white/14">
+          <p class="mb-3 text-base font-semibold text-white">{row.m}</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="px-3.5 py-3 rounded-xl bg-white/6">
+              <span class="block mb-1 text-[11px] font-semibold tracking-[0.14em] uppercase text-white/62">{t('table.col.corn')}</span>
+              <span class="text-[15px] text-white/78">{row.c}</span>
+            </div>
+            <div class="px-3.5 py-3 rounded-xl bg-leaf/12 border border-leaf/32">
+              <span class="block mb-1 text-[11px] font-bold tracking-[0.14em] uppercase text-leaf">{t('table.col.alidez')}</span>
+              <span class="text-[15px] font-semibold text-white">{row.a}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

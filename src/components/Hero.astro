@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '@/assets/photos/Nopal_Field_12.jpg';
+import { useTranslations, type Lang } from '@/i18n/utils';
+import { mailto } from '@/config';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const statPadding = [
+  'pr-[clamp(10px,2vw,28px)]',
+  'px-[clamp(10px,2vw,28px)] border-l border-white/20',
+  'pl-[clamp(10px,2vw,28px)] border-l border-white/20',
+];
+---
+<section class="relative overflow-hidden bg-soil text-white">
+  <Image
+    src={heroImg}
+    alt=""
+    class="absolute inset-0 w-full h-full max-w-none object-cover object-[50%_62%]"
+    loading="eager"
+    fetchpriority="high"
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+  />
+  <!-- Darken the top and bottom, then the left side where the text sits -->
+  <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,25,12,0.38)_0%,rgba(20,25,12,0.16)_34%,rgba(20,25,12,0.62)_68%,rgba(20,25,12,0.9)_100%)]" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,25,12,0.55)_0%,rgba(20,25,12,0.12)_62%,rgba(20,25,12,0)_100%)]" aria-hidden="true"></div>
+
+  <div class="relative wrapper pt-[clamp(88px,12vw,160px)] pb-[clamp(28px,3.4vw,44px)] min-h-[min(clamp(640px,calc(100svh_-_76px),940px),205vw)] flex flex-col justify-end">
+    <h1 class="max-w-[1000px] font-serif font-medium text-[clamp(44px,6.6vw,92px)] leading-[1.02] tracking-[-0.025em] text-white text-balance">
+      {t('hero.headline.pre')}<span class="italic text-leaf">{t('hero.headline.accent')}</span>
+    </h1>
+    <p class="mt-[clamp(20px,2.4vw,32px)] max-w-[560px] text-[clamp(17px,1.45vw,20px)] leading-[1.55] text-white/86 text-pretty">
+      {t('hero.subhead')}
+    </p>
+
+    <div class="flex flex-wrap gap-3 mt-[clamp(28px,3vw,40px)]">
+      <a href={mailto(t('contact.subject'))} class="inline-flex items-center justify-center h-14 px-[30px] rounded-full bg-leaf text-soil text-[17px] font-semibold hover:brightness-107 transition">{t('hero.cta.contact')}</a>
+      <a href="#intro" class="inline-flex items-center justify-center h-14 px-[30px] rounded-full border-[1.5px] border-white/70 text-white text-[17px] font-semibold hover:bg-white/12 hover:border-white transition-colors">{t('hero.cta.learn')}</a>
+    </div>
+
+    <div class="mt-[clamp(48px,7vw,96px)] grid grid-cols-3 border-t border-white/30">
+      {[1, 2, 3].map((i, idx) => (
+        <div class:list={['pt-[clamp(16px,2vw,24px)]', statPadding[idx]]}>
+          <p class="font-serif font-medium text-[clamp(19px,2.8vw,40px)] leading-[1.1] tracking-[-0.01em] text-white">{t(`hero.stat${i}.value`)}</p>
+          <p class="mt-2 text-[clamp(10px,0.9vw,12px)] leading-[1.35] font-semibold tracking-[0.14em] uppercase text-white/78">{t(`hero.stat${i}.label`)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

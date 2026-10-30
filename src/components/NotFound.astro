@@ -1,0 +1,29 @@
+---
+import PageHeader from '@/components/about/PageHeader.astro';
+import { useTranslations, prefix, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const p = prefix(lang);
+
+const links = [
+  { href: `${p}/solution`, label: t('nav.solution') },
+  { href: `${p}/impact`, label: t('nav.impact') },
+  { href: `${p}/about`, label: t('nav.about') },
+];
+---
+<PageHeader label={t('notfound.label')} heading={t('notfound.heading')} sub={t('notfound.sub')} />
+
+<section>
+  <div class="wrapper py-[clamp(56px,7vw,96px)] flex flex-wrap items-center gap-x-9 gap-y-6">
+    <a href={`${p}/`} class="inline-flex items-center h-14 px-7 rounded-full bg-forest text-white text-[17px] font-semibold hover:bg-soil transition-colors">{t('notfound.cta')}</a>
+    <ul class="flex flex-wrap items-center gap-x-7 gap-y-3">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="text-ink text-[17px] font-medium underline decoration-leaf/80 decoration-[1.5px] underline-offset-[6px] hover:decoration-leaf transition-colors">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

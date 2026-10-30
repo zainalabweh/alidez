@@ -1,0 +1,36 @@
+---
+import { CONTACT_EMAIL, mailto } from '@/config';
+import { useTranslations, prefix, type Lang } from '@/i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const p = prefix(lang);
+const year = new Date().getFullYear();
+
+const links = [
+  { href: `${p}/` || '/', label: t('nav.home') },
+  { href: `${p}/solution`, label: t('nav.solution') },
+  { href: `${p}/impact`, label: t('nav.impact') },
+  { href: `${p}/about`, label: t('nav.about') },
+];
+---
+<footer class="bg-soil text-white">
+  <div class="wrapper pt-[clamp(56px,7vw,88px)] pb-8">
+    <div class="flex flex-wrap justify-between items-start gap-x-16 gap-y-10 pb-[clamp(40px,5vw,64px)]">
+      <div class="flex flex-col gap-3">
+        <span class="font-bold text-[30px] leading-none tracking-[-0.035em] text-leaf">Alidez</span>
+        <p class="font-serif italic font-medium text-lg text-white/72">{t('footer.tagline')}</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-9 gap-y-3.5 text-[15px] font-medium">
+        {links.map((l) => (
+          <a href={l.href} class="text-white/82 hover:text-leaf transition-colors">{l.label}</a>
+        ))}
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-between items-center gap-x-6 gap-y-3 pt-6 border-t border-white/12 text-sm">
+      <p class="text-white/55">© {year} Alidez. {t('footer.rights')}</p>
+      <a href={mailto(t('contact.subject'))} class="text-leaf font-semibold hover:opacity-80 transition-opacity">{CONTACT_EMAIL}</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/about/PageHeader.astro';
+import WhyWeBuilt from '@/components/solution/WhyWeBuilt.astro';
+import WhyPellets from '@/components/solution/WhyPellets.astro';
+import ProcessSteps from '@/components/solution/ProcessSteps.astro';
+import BuiltForProducers from '@/components/solution/BuiltForProducers.astro';
+import SpeciesCards from '@/components/SpeciesCards.astro';
+import ContactCta from '@/components/ContactCta.astro';
+import { useTranslations } from '@/i18n/utils';
+import SpeciesCardsOverlay from '@/components/SpeciesCardsOverlay.astro';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout lang={lang} title={t('meta.solution.title')} description={t('meta.solution.desc')}>
+  <PageHeader label={t('sol.header.label')} heading={t('sol.header.heading')} sub={t('sol.header.sub')} />
+  <WhyWeBuilt lang={lang} />
+  <WhyPellets lang={lang} />
+  <ProcessSteps lang={lang} />
+  <BuiltForProducers lang={lang} />
+  <SpeciesCards lang={lang} class="border-t border-line" />
+  <!-- <SpeciesCardsOverlay lang={lang} class="border-t border-line" /> -->
+  <ContactCta lang={lang} headingKey="sol.closing.heading" bodyKey="sol.closing.body" />
+</BaseLayout>

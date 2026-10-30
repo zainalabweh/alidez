@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/about/PageHeader.astro';
+import OurStory from '@/components/about/OurStory.astro';
+import WhyMexico from '@/components/about/WhyMexico.astro';
+import MissionVision from '@/components/about/MissionVision.astro';
+import TeamSection from '@/components/about/TeamSection.astro';
+import PartnersFull from '@/components/about/PartnersFull.astro';
+import ContactCta from '@/components/ContactCta.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout lang={lang} title={t('meta.about.title')} description={t('meta.about.desc')}>
+  <PageHeader label={t('about.header.label')} heading={t('about.header.heading')} sub={t('about.header.sub')} />
+  <OurStory lang={lang} />
+  <WhyMexico lang={lang} />
+  <MissionVision lang={lang} />
+  <TeamSection lang={lang} />
+  <PartnersFull lang={lang} />
+  <ContactCta lang={lang} />
+</BaseLayout>

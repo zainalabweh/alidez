@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import PartnersStrip from '@/components/PartnersStrip.astro';
+import IntroSection from '@/components/IntroSection.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import ImpactTeaser from '@/components/ImpactTeaser.astro';
+import SpeciesCards from '@/components/SpeciesCards.astro';
+import ContactCta from '@/components/ContactCta.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+---
+<BaseLayout lang={lang} title={t('meta.home.title')} description={t('meta.home.desc')}>
+  <Hero lang={lang} />
+  {/* Hidden until the partner logos arrive */}
+  {/* <PartnersStrip lang={lang} /> */}
+  <IntroSection lang={lang} />
+  <ComparisonTable lang={lang} />
+  <ImpactTeaser lang={lang} />
+  <SpeciesCards lang={lang} />
+  <ContactCta lang={lang} />
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import Eyebrow from '@/components/Eyebrow.astro';
+
+interface Props { label: string; heading: string; sub?: string }
+const { label, heading, sub } = Astro.props;
+---
+<header class="bg-forest text-white">
+  <div class="wrapper pt-[clamp(72px,10vw,136px)] pb-[clamp(56px,7vw,96px)]">
+    <Eyebrow label={label} tone="dark" class="mb-[clamp(20px,2.4vw,32px)]" />
+    <div class="flex flex-wrap items-end justify-between gap-x-[72px] gap-y-6">
+      <h1 class="flex-[1_1_560px] max-w-[920px] font-serif font-medium text-[clamp(44px,6.2vw,88px)] leading-[1.02] tracking-[-0.025em] text-white text-balance">{heading}</h1>
+      {sub && <p class="flex-[0_1_400px] text-[clamp(17px,1.45vw,19px)] leading-[1.55] text-white/80 text-pretty">{sub}</p>}
+    </div>
+  </div>
+</header>
