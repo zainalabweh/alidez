@@ -7,10 +7,10 @@ import type { Lang } from '@/i18n/utils';
 interface Props { lang: Lang; title: string; description: string; noindex?: boolean }
 const { lang, title, description, noindex = false } = Astro.props;
 
-// English slugs everywhere, so the counterpart path is just add/remove /en
+// English slugs everywhere, so the counterpart path is just add/remove /es
 const path = Astro.url.pathname;
-const esPath = path.replace(/^\/en(\/|$)/, '/') || '/';
-const enPath = path.startsWith('/en') ? path : (path === '/' ? '/en/' : `/en${path}`);
+const enPath = path.replace(/^\/es(\/|$)/, '/') || '/';
+const esPath = /^\/es(\/|$)/.test(path) ? path : (path === '/' ? '/es/' : `/es${path}`);
 const site = Astro.site;
 ---
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ const site = Astro.site;
     <link rel="canonical" href={new URL(path, site)} />
     <link rel="alternate" hreflang="es" href={new URL(esPath, site)} />
     <link rel="alternate" hreflang="en" href={new URL(enPath, site)} />
-    <link rel="alternate" hreflang="x-default" href={new URL(esPath, site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(enPath, site)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

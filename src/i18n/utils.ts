@@ -9,7 +9,7 @@ export function useTranslations(lang: Lang) {
   return (key: string): string => dict[lang][key] ?? dict.en[key] ?? key;
 }
 
-/** '' for Spanish (default locale), '/en' for English - prepend to internal links */
+/** '' for English (default locale), '/es' for Spanish - prepend to internal links */
 export function prefix(lang: Lang): string {
-  return lang === 'en' ? '/en' : '';
+  return lang === 'es' ? '/es' : '';
 }

@@ -1,6 +1,6 @@
 ---
 // src/components/ImpactSection.astro
-import { useTranslations } from '@/i18n/utils';
+import { useTranslations, prefix } from '@/i18n/utils';
 import Icon from '@/components/Icon.astro';
 
 interface Props { lang: 'es' | 'en'; }
@@ -12,7 +12,7 @@ const cards = [
   { key: 'impact.card3', icon: 'mountains' },
   { key: 'impact.card4', icon: 'trees' },
 ];
-const impactHref = lang === 'en' ? '/en/impact' : '/impact';
+const impactHref = `${prefix(lang)}/impact`;
 ---
 
 <section class="py-16 px-5 md:px-12 bg-cream border-y border-line">

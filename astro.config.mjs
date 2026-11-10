@@ -9,15 +9,15 @@ import { copyFile } from 'node:fs/promises';
 
 /**
  * Cloudflare Pages serves the nearest 404.html for a missing URL, but Astro
- * builds src/pages/en/404.astro as en/404/index.html. Copy it to en/404.html
- * so missing /en/... URLs get the English page instead of the Spanish one.
+ * builds src/pages/es/404.astro as es/404/index.html. Copy it to es/404.html
+ * so missing /es/... URLs get the Spanish page instead of the English one.
  * @type {import('astro').AstroIntegration}
  */
-const englishNotFoundPage = {
-  name: 'english-404-page',
+const spanishNotFoundPage = {
+  name: 'spanish-404-page',
   hooks: {
     'astro:build:done': async ({ dir }) => {
-      await copyFile(new URL('en/404/index.html', dir), new URL('en/404.html', dir));
+      await copyFile(new URL('es/404/index.html', dir), new URL('es/404.html', dir));
     },
   },
 };
@@ -27,8 +27,8 @@ export default defineConfig({
   site: 'https://alidez.com',
 
   i18n: {
-    defaultLocale: "es",
-    locales: ["es", "en"],
+    defaultLocale: "en",
+    locales: ["en", "es"],
     routing: { prefixDefaultLocale: false },
   },
 
@@ -38,8 +38,8 @@ export default defineConfig({
 
   integrations: [sitemap({
     i18n: {
-      defaultLocale: 'es',
-      locales: { es: 'es', en: 'en' }
+      defaultLocale: 'en',
+      locales: { en: 'en', es: 'es' }
     },
-  }), englishNotFoundPage],
+  }), spanishNotFoundPage],
 });
