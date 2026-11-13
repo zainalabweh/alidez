@@ -2,6 +2,7 @@
 import Icon from '@/components/Icon.astro';
 import { useTranslations, prefix, type Lang } from '@/i18n/utils';
 import { mailto } from '@/config';
+import lockup from '@/assets/brand/alidez-lockup-horizontal.svg?url';
 
 interface Props { lang: Lang; esPath: string; enPath: string }
 const { lang, esPath, enPath } = Astro.props;
@@ -27,7 +28,9 @@ const langs = [
 ---
 <nav class="sticky top-0 z-50 w-full bg-cream/86 backdrop-blur-[14px] backdrop-saturate-130 border-b border-line">
   <div class="wrapper h-[76px] flex items-center justify-between gap-8">
-    <a href={`${p}/` || '/'} class="font-bold text-[25px] leading-none tracking-[-0.035em] text-forest hover:text-brand transition-colors">Alidez</a>
+    <a href={`${p}/` || '/'} class="flex-none flex items-center">
+      <img src={lockup} alt="Alidez" width="374" height="112" class="block h-7 w-auto" />
+    </a>
 
     <!-- Desktop (980px and up) -->
     <div class="hidden min-[980px]:flex items-center gap-[clamp(20px,2.4vw,34px)] text-[15px] font-medium">

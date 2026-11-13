@@ -47,12 +47,13 @@ src/
 │   ├── team.ts             Team members on the About page
 │   └── partners.ts         Partners on the About page and the home strip
 ├── assets/
+│   ├── brand/              Logo files for the nav and footer
 │   ├── photos/             Real photos
 │   └── ai/                 AI placeholder images, kept until real photos replace them
 ├── styles/
 │   └── global.css          Tailwind theme (colors, fonts) and shared utilities
 └── config.ts             Contact email
-public/                   Static files served as-is, like the favicon and _redirects
+public/                   Static files served as-is: favicons, app icons, the share image, robots.txt and _redirects
 ```
 
 ## Editing content
@@ -95,9 +96,20 @@ Before adding a phone photo, remove its location data, for example with `magick 
 - **Fonts:** Hanken Grotesk (`font-sans`) and Playfair Display (`font-serif`), loaded through Fontsource.
 - **Utilities:** `wrapper` (page width and side padding), `section-y` (section spacing), `eyebrow`, `heading-display`, `heading-section`, `heading-item` and `lead`.
 
+## Brand assets
+
+The logo and icons were redrawn as vectors in the Claude Design project "Logo redraw project", using the colors from `global.css`.
+
+- **Nav and footer:** the horizontal logo in `src/assets/brand/`. The plain version sits on the cream nav, and the `-on-dark` version on the dark footer.
+- **Favicons:** `favicon.svg` for current browsers, which switches to leaf green in dark mode, and `favicon.ico` (16, 32 and 48 px) for Safari and older browsers.
+- **App icons:** `apple-touch-icon.png` for iPhone and iPad. `icon-192.png`, `icon-512.png` and `icon-maskable-512.png` are for Android and are listed in `site.webmanifest`.
+- **Share image:** `og-image-1200x630.png` shows in link previews on WhatsApp, LinkedIn, Slack and iMessage.
+
+The design project's `brand/` folder has the other formats: PNG and stacked versions of the logo, an email signature logo and an 800px social media avatar. Below 64px, use the compact mark, which has no sun rays.
+
 ## SEO
 
-- `site` in `astro.config.mjs` is `https://alidez.com`. `BaseLayout.astro` builds the canonical and `hreflang` links from it.
+- `site` in `astro.config.mjs` is `https://alidez.com`. `BaseLayout.astro` builds the canonical, `hreflang` and `og:image` links from it.
 - `@astrojs/sitemap` generates `sitemap-index.xml` at build time, and `public/robots.txt` points to it.
 - The 404 pages are marked `noindex`.
 
